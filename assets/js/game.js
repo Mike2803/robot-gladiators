@@ -28,8 +28,15 @@ var fightOrSkip = function() {
 }
 
 var fight = function(enemy) {
-  console.log(enemy);
+  // keep track of who goes first
+  var isPlayerTurn = true;
+
+  if (Math.random() > 0.5) {
+    isPlayerTurn = false;
+  } 
+
   window.alert("Welcome to Robot Gladiators!")
+
   while (playerInfo.health > 0 && enemy.health > 0) {
     // ask player if they'd like to fight or skip using fightOrSkip function
     if (fightOrSkip()) {
@@ -71,6 +78,8 @@ var fight = function(enemy) {
     } else {
       window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
     }
+    // switch turn order for next round
+    isPlayerTurn = !isPlayerTurn;
   }
 };
 
